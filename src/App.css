@@ -1,44 +1,152 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
+html,
+body,
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+	height: 100%;
+	background-color: var(--color-bg-primary);
+	font-family: var(--font-lunchbox);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+:root {
+	--green-50: #e8ece4;
+	--green-100: #eafeb7;
+	--green-200: #cee593;
+	--green-300: #c3d250;
+	--green-400: #c2d502;
+
+	--blue-300: #a5d6e7;
+	--blue-800: #22546e;
+
+	--greyscale-50: #fff;
+	--greyscale-100: #f6f6f6;
+	--greyscale-300: #e5e5e5;
+	--greyscale-600: #5a5a5a;
+
+	--orange-300: #f6bc97;
+
+	--pink-300: #ecb1be;
+	--pink-500: #e06c7e;
+
+	--purple-300: #a19bda;
+
+	--yellow-50: #fdf7e7;
+	--yellow-100: #f6ed7f;
+	--yellow-200: #f7e676;
+	--yellow-300: #f7d064;
+
+	/* --base-color-neutral-white: #fff;
+	--base-color-neutral-black: #000;
+	--base-color-neutral-neutral-darker: #222;
+	--base-color-system-success-green: #cef5ca;
+	--base-color-system-success-green-dark: #114e0b;
+	--base-color-neutral-neutral-lightest: #eee;
+	--base-color-brand-blue: #2d62ff;
+	--base-color-brand-pink: #dd23bb;
+	--base-color-system-error-red: #f8e4e4;
+	--base-color-system-error-red-dark: #3b0b0b;
+	--base-color-system-warning-yellow: #fcf8d8;
+	--base-color-system-warning-yellow-dark: #5e5515; */
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+@font-face {
+	font-family: 'Lunchbox';
+	src: url('/fonts/lunchbox.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+@utility font-light {
+	font-family: var(--font-lunchbox);
+	font-weight: 300;
+	-webkit-text-stroke: 0.5px currentColor;
+}
+
+@utility font-medium {
+	font-family: var(--font-lunchbox);
+	font-weight: 500;
+	-webkit-text-stroke: 0.5px currentColor;
+}
+
+@utility font-semibold {
+	font-family: var(--font-lunchbox);
+	font-weight: 600;
+	-webkit-text-stroke: 0.5px currentColor;
+}
+
+@utility font-bold {
+	font-family: var(--font-lunchbox);
+	font-weight: 700;
+	-webkit-text-stroke: 0.5px currentColor;
+}
+
+@utility font-extrabold {
+	font-family: var(--font-lunchbox);
+	font-weight: 800;
+	-webkit-text-stroke: 0.5px currentColor;
+}
+
+@utility font-black {
+	font-family: var(--font-lunchbox);
+	font-weight: 900;
+	-webkit-text-stroke: 0.5px currentColor;
+}
+
+@theme inline {
+	--color-bg-primary: var(--yellow-50);
+	--color-text-primary: var(--blue-800);
+	--color-text-dark: var(--greyscale-600);
+	--color-button-bg-primary: var(--blue-800);
+	--color-text-secondary: var(--greyscale-50);
+	--color-button-bg-secondary: var(--greyscale-100);
+
+	--color-green-50: var(--green-50);
+	--color-green-100: var(--green-100);
+	--color-green-200: var(--green-200);
+	--color-green-300: var(--green-300);
+	--color-green-400: var(--green-400);
+
+	--color-grey-50: var(--greyscale-50);
+	--color-grey-100: var(--greyscale-100);
+	--color-grey-300: var(--greyscale-300);
+	--color-grey-600: var(--greyscale-600);
+
+	--color-pink-300: var(--pink-300);
+	--color-pink-500: var(--pink-500);
+
+	--color-blue-300: var(--blue-300);
+	--color-blue-800: var(--blue-800);
+
+	--color-yellow-50: var(--yellow-50);
+	--color-yellow-100: var(--yellow-100);
+	--color-yellow-200: var(--yellow-200);
+	--color-yellow-300: var(--yellow-300);
+
+	--color-orange-300: var(--orange-300);
+
+	--color-purple-300: var(--purple-300);
+
+	--color-brand-orange: var(--orange-300);
+	--color-brand-green: var(--green-300);
+	--color-brand-yellow: var(--yellow-300);
+	--color-brand-purple: var(--purple-300);
+	--color-brand-pink: var(--pink-300);
+	--color-brand-blue: var(--blue-300);
+
+	--font-lunchbox: 'Lunchbox', cursive;
 }
 
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+	a:nth-of-type(2) .logo {
+		animation: logo-spin infinite 20s linear;
+	}
 }
