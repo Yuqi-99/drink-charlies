@@ -150,3 +150,24 @@ body,
 		animation: logo-spin infinite 20s linear;
 	}
 }
+
+.line {
+	position: absolute;
+	/* left: 0; */
+	width: 55%;
+	height: 2px;
+	background: var(--color-text-primary);
+	transform-origin: center;
+}
+
+.line-top {
+	top: 11px;
+}
+
+.line-middle {
+	width: 30%;
+}
+
+.line-bottom {
+	bottom: 11px;
+}

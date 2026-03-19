@@ -2,9 +2,12 @@ import { MdOutlineCameraAlt } from 'react-icons/md';
 import DrinkCharliesLogo from 'src/assets/drink-charlies-logo.svg?react';
 import { motion } from 'framer-motion';
 import { useMediaQuery } from 'src/utils/useMediaQuery';
-import { HiOutlineMenuAlt1 } from 'react-icons/hi';
+// import { HiOutlineMenuAlt1 } from 'react-icons/hi';
+import { useState } from 'react';
 
 export const Header = () => {
+	const isMobile = useMediaQuery('(max-width: 1023px)');
+	const [openMobileMenu, setOpenMobileMenu] = useState(false);
 	const bgVariants = {
 		rest: { scale: 0, opacity: 0 },
 		hover: {
@@ -14,10 +17,10 @@ export const Header = () => {
 		},
 	};
 
-	const isMobile = useMediaQuery('(max-width: 1023px)');
+	console.log(openMobileMenu, 'openMobileMenu');
 
 	return (
-		<div className='absolute z-20 flex h-full w-full flex-col items-stretch justify-between px-10 pt-10'>
+		<div className='absolute z-20 flex h-full w-full max-w-[inherit] flex-col items-stretch justify-between px-10 pt-10'>
 			<div className='flex w-full items-start justify-between'>
 				{isMobile ? (
 					// add for spacing
@@ -45,8 +48,13 @@ export const Header = () => {
 				<DrinkCharliesLogo className='w-36 min-w-36' />
 
 				{isMobile ? (
-					<div className='rounded-full bg-white p-2'>
-						<HiOutlineMenuAlt1 className='size-6 min-w-6' />
+					<div
+						className='relative flex size-9 min-w-8 cursor-pointer items-center justify-start rounded-full bg-white p-2'
+						onClickCapture={() => setOpenMobileMenu(true)}
+					>
+						<span className='line line-top' />
+						<span className='line line-middle' />
+						<span className='line line-bottom' />
 					</div>
 				) : (
 					<div className='bg-grey-100 flex items-center justify-center rounded-md px-4 py-2'>
