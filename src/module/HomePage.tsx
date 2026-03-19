@@ -8,12 +8,12 @@ export const HomePage = () => {
 				<img
 					src='/images/home-page-deco.png'
 					alt='deco'
-					className='absolute top-0 right-0 bottom-0'
+					className='absolute right-0 scale-[300%] sm:scale-150 sm:bottom-0 lg:scale-100'
 				/>
 
 				<BringOnCharlies className='max-w-155' />
 
-				<video className='absolute h-full w-full max-w-165' autoPlay loop muted playsInline>
+				<video className='absolute h-full w-full lg:max-w-165' autoPlay loop muted playsInline>
 					<source
 						src='/video/cassis-video.mp4'
 						type='video/mp4; codecs="hvc1"'

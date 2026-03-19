@@ -1,4 +1,10 @@
+import { useMediaQuery } from 'src/utils/useMediaQuery';
+
 export const HeaderBottom = () => {
+	const isMobile = useMediaQuery('(max-width: 1023px)');
+
+	if (isMobile) return null;
+
 	return (
 		<div className='absolute z-10 flex h-full w-full flex-col justify-end px-10 pb-16'>
 			<div className='z-10 flex w-full items-center justify-center'>
