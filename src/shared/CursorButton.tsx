@@ -19,21 +19,54 @@ export const CursorButton = ({ onClick, text = 'Next' }: CursorButtonProps) => {
 	const springY = useSpring(mouseY, springConfig);
 
 	useEffect(() => {
+		// const OFFSET = isMobile ? 180 : 240;
+		const getInitialPos = () => ({
+			x: window.innerWidth / 1.3,
+			y: window.innerHeight / 1.3,
+		});
+
 		// 在客户端拿到窗口尺寸后，设置初始位置到右下角
-		mouseX.set(window.innerWidth - 180);
-		mouseY.set(window.innerHeight - 180);
+		const initial = getInitialPos();
+		mouseX.set(initial.x);
+		mouseY.set(initial.y);
 
 		setTimeout(() => setReady(true), 500);
 
-		if (isMobile) return;
+		const handleResize = () => {
+			const currentInitial = getInitialPos();
+			mouseX.set(currentInitial.x);
+			mouseY.set(currentInitial.y);
+		};
+
+		window.addEventListener('resize', handleResize);
+
+		// 如果是移动端，只监听 resize 保证位置正确，不监听 mousemove
+		if (isMobile) {
+			return () => window.removeEventListener('resize', handleResize);
+		}
 
 		const handleMouseMove = (e: MouseEvent) => {
-			mouseX.set(e.clientX);
-			mouseY.set(e.clientY);
+			const currentInitial = getInitialPos();
+			// Define boundaries (e.g., top 100px for header, bottom 100px for footer region)
+			const isInHeader = e.clientY < 100;
+			const isInFooter = e.clientY > window.innerHeight - 100;
+
+			if (isInHeader || isInFooter) {
+				// Reset to initial position if in restricted area
+				mouseX.set(currentInitial.x);
+				mouseY.set(currentInitial.y);
+			} else {
+				// Follow mouse normally if in allowed area
+				mouseX.set(e.clientX);
+				mouseY.set(e.clientY);
+			}
 		};
 
 		window.addEventListener('mousemove', handleMouseMove);
-		return () => window.removeEventListener('mousemove', handleMouseMove);
+		return () => {
+			window.removeEventListener('mousemove', handleMouseMove);
+			window.removeEventListener('resize', handleResize);
+		};
 	}, [isMobile, mouseX, mouseY]);
 
 	return (
