@@ -54,7 +54,7 @@ export function useBubbleCursor(options: BubbleOptions = {}) {
 			const riseAmt = rise * (0.6 + Math.random() * 0.8);
 			const shrink = 0.2 + Math.random() * 0.4;
 			const dur = 0.8 + Math.random() * 0.8;
-			const isHollow = Math.random() > 0.2;
+			const isHollow = Math.random() > 0;
 			const color = colors[Math.floor(Math.random() * colors.length)];
 
 			el.style.cssText = `
@@ -68,7 +68,7 @@ export function useBubbleCursor(options: BubbleOptions = {}) {
         animation: bubbleRise ${dur}s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         ${
 					isHollow
-						? `background: transparent; border: 1.5px solid ${color};`
+						? `background: transparent; border: 2px solid ${color};`
 						: `background: ${color};`
 				}
       `;

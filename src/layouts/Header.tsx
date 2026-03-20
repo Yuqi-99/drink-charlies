@@ -20,8 +20,8 @@ export const Header = () => {
 	console.log(openMobileMenu, 'openMobileMenu');
 
 	return (
-		<div className='absolute z-20 flex h-full w-full max-w-[inherit] flex-col items-stretch justify-between px-10 pt-10'>
-			<div className='flex w-full items-start justify-between'>
+		<div className='absolute flex h-full w-full max-w-[inherit] flex-col items-stretch justify-between px-10 pt-10'>
+			<div className='flex w-full items-start justify-between z-20'>
 				{isMobile ? (
 					// add for spacing
 					<div className='' />
@@ -29,7 +29,7 @@ export const Header = () => {
 					<motion.a
 						target='_blank'
 						href='https://www.instagram.com/drinkcharlies?igsh=aWprZ2pmNTdndWUw'
-						className='border-button-bg-primary relative flex size-10 min-w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-solid'
+						className='border-button-bg-primary relative z-10 flex size-10 min-w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-solid'
 						initial='rest'
 						whileHover='hover'
 						whileTap='tap'
