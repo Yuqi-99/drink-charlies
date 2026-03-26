@@ -49,7 +49,7 @@ export const CursorButton = ({ onClick, text = 'Next' }: CursorButtonProps) => {
 			const currentInitial = getInitialPos();
 			// Define boundaries (e.g., top 100px for header, bottom 100px for footer region)
 			const isInHeader = e.clientY < 100;
-			const isInFooter = e.clientY > window.innerHeight - 100;
+			const isInFooter = e.clientY > window.innerHeight - 150;
 
 			if (isInHeader || isInFooter) {
 				// Reset to initial position if in restricted area
