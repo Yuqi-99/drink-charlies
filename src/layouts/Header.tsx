@@ -138,8 +138,8 @@ export const Header = () => {
 
 	return (
 		<>
-			<div className='absolute flex h-full w-full max-w-[inherit] flex-col items-stretch justify-between px-10 pt-10'>
-				<div className='z-30 flex w-full items-start justify-between'>
+			<div className='fixed top-10 z-20 flex w-full max-w-[inherit] flex-col items-stretch justify-between px-10'>
+				<div className='flex w-full items-start justify-between'>
 					<motion.a
 						target='_blank'
 						href='https://www.instagram.com/drinkcharlies?igsh=aWprZ2pmNTdndWUw'

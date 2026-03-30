@@ -14,7 +14,8 @@ export const RootLayout = () => {
 	return (
 		<main className='flex h-full min-h-screen w-full flex-col items-center justify-start'>
 			{/* <LoadingScreen /> */}
-			<div className='relative flex h-full w-full max-w-360 flex-col items-center justify-center'>
+			{/* <div className='relative flex h-full w-full max-w-360 flex-col items-center justify-center'> */}
+			<div className='relative mx-auto flex w-full max-w-360 justify-center'>
 				<Header />
 				<Outlet />
 				<HeaderBottom />

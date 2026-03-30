@@ -1,73 +1,83 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type RefObject } from 'react';
 import { useMediaQuery } from 'src/utils/useMediaQuery';
 
 interface CursorButtonProps {
 	onClick: () => void;
 	text?: string;
+	containerRef: RefObject<HTMLElement | null>;
 }
 
-export const CursorButton = ({ onClick, text = 'Next' }: CursorButtonProps) => {
+export const CursorButton = ({ onClick, text = 'Next', containerRef }: CursorButtonProps) => {
 	const isMobile = useMediaQuery('(max-width: 1023px)');
 	const [ready, setReady] = useState(false);
+
 	const mouseX = useMotionValue(0);
 	const mouseY = useMotionValue(0);
 
-	// Spring configuration for smooth following
-	const springConfig = { damping: 25, stiffness: 200 };
-	const springX = useSpring(mouseX, springConfig);
-	const springY = useSpring(mouseY, springConfig);
+	const springX = useSpring(mouseX, { damping: 20, stiffness: 200, restDelta: 0.001 });
+	const springY = useSpring(mouseY, { damping: 20, stiffness: 200, restDelta: 0.001 });
 
 	useEffect(() => {
-		// const OFFSET = isMobile ? 180 : 240;
-		const getInitialPos = () => ({
-			x: window.innerWidth / 1.3,
-			y: window.innerHeight / 1.3,
-		});
+		const resetToDefault = (immediate = false) => {
+			const rect = containerRef.current?.getBoundingClientRect();
+			if (rect) {
+				// 这里的坐标是相对于视口(Viewport)的，因为按钮是 fixed
+				// 这里的 1.4 是你原本代码里的比例逻辑
+				const targetX = rect.left + rect.width / 1.4;
+				const targetY = rect.top + rect.height / 1.4;
 
-		// 在客户端拿到窗口尺寸后，设置初始位置到右下角
-		const initial = getInitialPos();
-		mouseX.set(initial.x);
-		mouseY.set(initial.y);
-
-		setTimeout(() => setReady(true), 500);
-
-		const handleResize = () => {
-			const currentInitial = getInitialPos();
-			mouseX.set(currentInitial.x);
-			mouseY.set(currentInitial.y);
-		};
-
-		window.addEventListener('resize', handleResize);
-
-		// 如果是移动端，只监听 resize 保证位置正确，不监听 mousemove
-		if (isMobile) {
-			return () => window.removeEventListener('resize', handleResize);
-		}
-
-		const handleMouseMove = (e: MouseEvent) => {
-			const currentInitial = getInitialPos();
-			// Define boundaries (e.g., top 100px for header, bottom 100px for footer region)
-			const isInHeader = e.clientY < 100;
-			const isInFooter = e.clientY > window.innerHeight - 150;
-
-			if (isInHeader || isInFooter) {
-				// Reset to initial position if in restricted area
-				mouseX.set(currentInitial.x);
-				mouseY.set(currentInitial.y);
-			} else {
-				// Follow mouse normally if in allowed area
-				mouseX.set(e.clientX);
-				mouseY.set(e.clientY);
+				if (immediate) {
+					// 如果需要“瞬间”归位，可以直接 jump
+					mouseX.jump(targetX);
+					mouseY.jump(targetY);
+				} else {
+					mouseX.set(targetX);
+					mouseY.set(targetY);
+				}
+				// mouseX.set(rect.left + rect.width / 1.4);
+				// mouseY.set(rect.top + rect.height / 1.4);
 			}
 		};
 
+		resetToDefault(true);
+		setTimeout(() => setReady(true), 500);
+
+		const handleMouseMove = (e: MouseEvent) => {
+			if (isMobile) return;
+			const rect = containerRef.current?.getBoundingClientRect();
+			if (!rect) return;
+
+			const padding = 100;
+			// 判断鼠标是否在当前可见的 section 范围内
+			const inSection =
+				e.clientX >= rect.left &&
+				e.clientX <= rect.right &&
+				e.clientY >= rect.top + padding &&
+				e.clientY <= rect.bottom - padding;
+
+			if (inSection) {
+				mouseX.set(e.clientX);
+				mouseY.set(e.clientY);
+			} else {
+				resetToDefault();
+			}
+		};
+
+		const handleResize = () => resetToDefault(true);
+		const handleScroll = () => resetToDefault(true);
+
+		// 关键：监听 scroll，保证不跟随鼠标时，它也锚定在 section 的相对位置
 		window.addEventListener('mousemove', handleMouseMove);
+		window.addEventListener('resize', handleResize);
+		window.addEventListener('scroll', handleScroll); // 新增滚动监听
+
 		return () => {
 			window.removeEventListener('mousemove', handleMouseMove);
 			window.removeEventListener('resize', handleResize);
+			window.removeEventListener('scroll', handleScroll);
 		};
-	}, [isMobile, mouseX, mouseY]);
+	}, [isMobile, mouseX, mouseY, containerRef]);
 
 	return (
 		<motion.button
