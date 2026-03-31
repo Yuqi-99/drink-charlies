@@ -138,7 +138,7 @@ export const Header = () => {
 
 	return (
 		<>
-			<div className='fixed top-10 z-20 flex w-full max-w-[inherit] flex-col items-stretch justify-between px-10'>
+			<div className='fixed top-10 z-30 flex w-full max-w-[inherit] flex-col items-stretch justify-between px-10'>
 				<div className='flex w-full items-start justify-between'>
 					<motion.a
 						target='_blank'
@@ -189,7 +189,7 @@ export const Header = () => {
 							// 取特定的名字 上面的animation就可以用这个名字来进行
 							initial='rest'
 							whileHover='hover' // ← 父层触发，子层自动响应
-							className='bg-grey-100 relative flex cursor-pointer items-center justify-center overflow-hidden rounded-md px-4 py-2 text-lg uppercase'
+							className='bg-grey-100 text-text-primary relative flex cursor-pointer items-center justify-center overflow-hidden rounded-md px-4 py-2 text-lg font-medium uppercase'
 						>
 							{/* 写两个同样的字做切换效果 */}
 							<motion.span variants={defaultTextVariants} style={{ display: 'block' }}>

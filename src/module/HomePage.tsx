@@ -3,7 +3,7 @@ import { ProductsPage } from 'src/module/ProductsPage';
 
 export const HomePage = () => {
 	return (
-		<div className='flex w-full flex-col'>
+		<div className='flex h-fit w-full flex-col overflow-y-scroll'>
 			<HomeProductsPage />
 			<ProductsPage />
 		</div>

@@ -1,8 +1,7 @@
-export const PRODUCTS_DATA = {
+export const HOME_PRODUCTS_DATA = {
 	cassis: {
 		id: 'cassis',
 		displayName: 'Cassis',
-		productImage: '',
 		bgColor: 'bg-brand-purple',
 		videoUrlMp4: '/video/cassis-video.mp4',
 		videoUrlWebm: '/video/cassis-video.webm',
@@ -10,7 +9,6 @@ export const PRODUCTS_DATA = {
 	passionFruit: {
 		id: 'passionFruit',
 		displayName: 'Passionfruit',
-		productImage: '',
 		bgColor: 'bg-brand-yellow',
 		videoUrlMp4: '/video/passionFruit-video.mp4',
 		videoUrlWebm: '/video/passionFruit-video.webm',
@@ -18,7 +16,6 @@ export const PRODUCTS_DATA = {
 	orange: {
 		id: 'orange',
 		displayName: 'Orange & Mandarin',
-		productImage: '',
 		bgColor: 'bg-brand-orange',
 		videoUrlMp4: '/video/orange-video.mp4',
 		videoUrlWebm: '/video/orange-video.webm',
@@ -26,7 +23,6 @@ export const PRODUCTS_DATA = {
 	lime: {
 		id: 'lime',
 		displayName: 'Rasberry & Lime',
-		productImage: '',
 		bgColor: 'bg-brand-green',
 		videoUrlMp4: '/video/lime-video.mp4',
 		videoUrlWebm: '/video/lime-video.webm',
@@ -34,7 +30,6 @@ export const PRODUCTS_DATA = {
 	grapefruit: {
 		id: 'grapefruit',
 		displayName: 'Grapefruit',
-		productImage: '',
 		bgColor: 'bg-brand-pink',
 		videoUrlMp4: '/video/grapefruit-video.mp4',
 		videoUrlWebm: '/video/grapefruit-video.webm',
@@ -42,9 +37,86 @@ export const PRODUCTS_DATA = {
 	lemon: {
 		id: 'lemon',
 		displayName: 'Lemon',
-		productImage: '',
 		bgColor: 'bg-brand-blue',
 		videoUrlMp4: '/video/lemon-video.mp4',
 		videoUrlWebm: '/video/lemon-video.webm',
+	},
+};
+
+export const CANS_PRODUCTS_DATA = {
+	cassis: {
+		id: 'cassis',
+		displayName: 'Cassis',
+		bgColor: 'bg-brand-purple',
+		productImage: '/images/products/cassis-drink.avif',
+		bgImage: '/images/products/cassis-drink-bg-deco.avif',
+		detailsImg: '/images/products/cassis-details.avif',
+	},
+	passionFruit: {
+		id: 'passionFruit',
+		displayName: 'Passionfruit',
+		bgColor: 'bg-brand-yellow',
+		productImage: '/images/products/passion-fruit-drink.avif',
+		bgImage: '/images/products/passion-fruit-drink-bg-deco.avif',
+		detailsImg: '/images/products/passion-fruit-details.avif',
+	},
+	orange: {
+		id: 'orange',
+		displayName: 'Orange & Mandarin',
+		bgColor: 'bg-brand-orange',
+		productImage: '/images/products/orange-drink.avif',
+		bgImage: '/images/products/orange-drink-bg-deco.avif',
+		detailsImg: '/images/products/orange-details.avif',
+	},
+	lime: {
+		id: 'lime',
+		displayName: 'Rasberry & Lime',
+		bgColor: 'bg-brand-green',
+		productImage: '/images/products/lime-drink.avif',
+		bgImage: '/images/products/lime-drink-bg-deco.avif',
+		detailsImg: '/images/products/lime-details.avif',
+	},
+	grapefruit: {
+		id: 'grapefruit',
+		displayName: 'Grapefruit',
+		bgColor: 'bg-brand-pink',
+		productImage: '/images/products/grapefruit-drink.avif',
+		bgImage: '/images/products/grapefruit-drink-bg-deco.avif',
+		detailsImg: '/images/products/grapefruit-details.avif',
+	},
+	lemon: {
+		id: 'lemon',
+		displayName: 'Lemon',
+		bgColor: 'bg-brand-blue',
+		productImage: '/images/products/lemon-drink.avif',
+		bgImage: '/images/products/lemon-drink-bg-deco.avif',
+		detailsImg: '/images/products/lemon-details.avif',
+	},
+};
+
+export const BOTTLE_PRODUCTS_DATA = {
+	cassis: {
+		id: 'cassis',
+		displayName: 'Cassis',
+		bgColor: 'bg-brand-purple',
+		productImage: '/images/products/cassis-drink-bottle.avif',
+		bgImage: '/images/products/cassis-drink-bg-deco.avif',
+		detailsImg: '/images/products/cassis-details.avif',
+	},
+	orange: {
+		id: 'orange',
+		displayName: 'Orange & Mandarin',
+		bgColor: 'bg-brand-orange',
+		productImage: '/images/products/orange-drink-bottle.avif',
+		bgImage: '/images/products/orange-drink-bg-deco.avif',
+		detailsImg: '/images/products/orange-details.avif',
+	},
+	lemon: {
+		id: 'lemon',
+		displayName: 'Lemon',
+		bgColor: 'bg-brand-blue',
+		productImage: '/images/products/lemon-drink-bottle.avif',
+		bgImage: '/images/products/lemon-drink-bg-deco.avif',
+		detailsImg: '/images/products/lemon-details.avif',
 	},
 };
