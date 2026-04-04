@@ -1,22 +1,3 @@
-// import { MARQUEES_DATA } from 'src/constants/marqueesData';
-
-// export const MarqueesSection = () => {
-// 	const marqueesData = Object.values(MARQUEES_DATA);
-
-// 	return (
-// 		<div className='no-scrollbar my-24 flex h-28 w-full -rotate-4 snap-x snap-mandatory items-center justify-between gap-x-16 overflow-x-auto bg-white'>
-// 			{marqueesData.map((item) => (
-// 				<div key={item.id} className='flex items-center justify-center'>
-// 					<img src={item.img} alt={item.displayName} className='w-12' />
-// 					<p className='text-text-primary mt-3 text-5xl font-medium tracking-wide text-nowrap uppercase'>
-// 						{item.displayName}
-// 					</p>
-// 				</div>
-// 			))}
-// 		</div>
-// 	);
-// };
-
 import { MARQUEES_DATA } from 'src/constants/marqueesData';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';

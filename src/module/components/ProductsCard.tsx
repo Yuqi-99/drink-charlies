@@ -83,7 +83,7 @@ export const ProductsCard = ({ product, onClick }: TProductsCard) => {
 			<motion.img
 				src='/images/products/products-bg-deco.png'
 				alt='products-bg-deco'
-				className='absolute bottom-0 h-fit object-contain'
+				className='absolute bottom-5 scale-125 h-fit object-contain'
 				variants={bgImgVariants}
 			/>
 
