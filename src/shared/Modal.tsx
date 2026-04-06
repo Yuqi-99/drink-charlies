@@ -2,7 +2,7 @@ import React from 'react';
 import { ModalOverlay } from 'src/shared/ModalOverlay';
 import { cn } from 'src/utils/cn';
 import { IoClose } from 'react-icons/io5';
-import { AnimatePresence, type Variants, motion } from 'framer-motion';
+import { AnimatePresence, type Variants, motion } from 'motion/react';
 
 type TModal = {
 	opened: boolean;

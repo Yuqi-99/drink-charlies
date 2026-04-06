@@ -1,11 +1,11 @@
 import { MdOutlineCameraAlt } from 'react-icons/md';
 import DrinkCharliesLogo from 'src/assets/drink-charlies-logo.svg?react';
-import { AnimatePresence, motion, type Variants } from 'framer-motion';
 import { useMediaQuery } from 'src/utils/useMediaQuery';
 // import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NAVIGATION_DATA } from 'src/constants/navigationData';
+import { AnimatePresence, motion, type Variants } from 'motion/react';
 
 export const Header = () => {
 	const navigate = useNavigate();

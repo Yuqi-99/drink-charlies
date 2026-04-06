@@ -1,12 +1,13 @@
-import { useEffect, useState, useRef } from 'react';
 import {
 	AnimatePresence,
-	motion,
+	useInView,
 	useMotionValue,
 	useSpring,
 	useTransform,
-	useInView,
-} from 'framer-motion';
+	motion,
+} from 'motion/react';
+import { useEffect, useState, useRef } from 'react';
+
 import BringOnCharlies from 'src/assets/bring-on-charlies.svg?react';
 import { HOME_PRODUCTS_DATA } from 'src/constants/productsData';
 import { CursorButton } from 'src/shared/CursorButton';

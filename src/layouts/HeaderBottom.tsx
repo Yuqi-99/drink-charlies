@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useState } from 'react';
 import { NAVIGATION_DATA } from 'src/constants/navigationData';
 import { useMediaQuery } from 'src/utils/useMediaQuery';

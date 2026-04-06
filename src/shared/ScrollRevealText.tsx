@@ -1,4 +1,5 @@
-import { motion, useTransform, type MotionValue } from 'framer-motion';
+import type { MotionValue } from 'motion';
+import { useTransform, motion } from 'motion/react';
 
 interface ScrollRevealTextProps {
 	text: string;

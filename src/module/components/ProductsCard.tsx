@@ -1,4 +1,4 @@
-import { motion, type Variants } from 'framer-motion';
+import { motion, type Variants } from 'motion/react';
 
 type TProductsCard = {
 	product: {
@@ -83,7 +83,7 @@ export const ProductsCard = ({ product, onClick }: TProductsCard) => {
 			<motion.img
 				src='/images/products/products-bg-deco.png'
 				alt='products-bg-deco'
-				className='absolute bottom-5 scale-125 h-fit object-contain'
+				className='absolute bottom-5 h-fit scale-125 object-contain'
 				variants={bgImgVariants}
 			/>
 

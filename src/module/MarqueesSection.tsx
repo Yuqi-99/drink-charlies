@@ -1,5 +1,5 @@
 import { MARQUEES_DATA } from 'src/constants/marqueesData';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 
 export const MarqueesSection = () => {
