@@ -5,10 +5,14 @@ import { BOTTLE_PRODUCTS_DATA, CANS_PRODUCTS_DATA } from 'src/constants/products
 import { ProductsCard } from 'src/module/components/ProductsCard';
 import { Modal } from 'src/shared/Modal';
 import { cn } from 'src/utils/cn';
+import { useSwipeScroll } from 'src/utils/useSwipeScroll';
 
 export const ProductsPage = () => {
 	const [selectedType, setSelectedType] = useState<'cans' | 'bottles'>('cans');
 	const [openDetailsModal, setOpenDetailsModal] = useState<string | null>(null);
+
+	const { containerRef, onMouseDown, onMouseMove, onMouseUp, onMouseLeave, checkHasMoved } =
+		useSwipeScroll<HTMLDivElement>();
 
 	const products =
 		selectedType === 'cans'
@@ -45,7 +49,14 @@ export const ProductsPage = () => {
 			</div>
 
 			{/* cans */}
-			<div className='no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-6 lg:grid lg:grid-cols-3 lg:gap-3 lg:pb-0'>
+			<div
+				className='no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-6 lg:grid lg:grid-cols-3 lg:gap-3 lg:pb-0'
+				ref={containerRef}
+				onMouseDownCapture={onMouseDown}
+				onMouseMoveCapture={onMouseMove}
+				onMouseUpCapture={onMouseUp}
+				onMouseLeave={onMouseLeave}
+			>
 				{products.map((product) => (
 					<ProductsCard
 						key={product.id}

@@ -18,19 +18,25 @@ export const StoryPage = () => {
 		offset: ['start end', 'end start'],
 	});
 
-	// 图片从小变大
-	// scaleY 在滚动 0 - 0.6 时完成（先填满高度）
-	const scaleY = useTransform(act1Progress, [0, 0.5], [0.7, 2]);
-	// scaleX 在滚动 0.2 - 1 时完成（晚一点才填满宽度）
-	const scaleX = useTransform(act1Progress, [0.3, 1], [1, 2.5]);
+	// ── 第一幕：黄色背景由小变大 ──
+	const clipPathYellow = useTransform(
+		act1Progress,
+		[0, 0.3, 0.5],
+		[
+			'inset(15% 12.5% 15% 12.5% round 2% 2% 5% 40% / 25% 16% 28% 1%)', // 初始
+			'inset(0% 12.5% 0% 12.5% round 2% 2% 5% 40% / 25% 16% 28% 1%)', // 高度填满
+			'inset(0% 0% 0% 0% round 0%)', // 宽度也填满
+		]
+	);
+
 	// 柠檬的图片
 	const scaleImg = useTransform(act1Progress, [0.35, 0.65], [0, 0.7]);
 
 	const lines = [
-		{ text: 'Sparkling water with a squeeze of real organic fruit.', range: [0.35, 0.65] },
-		{ text: 'No added sugars, no sweeteners', range: [0.35, 0.65] },
-		{ text: 'No colourants, no preservatives, no concentrates.', range: [0.35, 0.65] },
-		{ text: 'Funny we even mention it, no?', range: [0.35, 0.65] },
+		{ text: 'Sparkling water with a squeeze of real organic fruit.', range: [0.25, 0.65] },
+		{ text: 'No added sugars, no sweeteners', range: [0.25, 0.65] },
+		{ text: 'No colourants, no preservatives, no concentrates.', range: [0.25, 0.65] },
+		{ text: 'Funny we even mention it, no?', range: [0.25, 0.65] },
 	];
 
 	// ── 第二幕：蓝色背景从右下角扩散 ──
@@ -50,43 +56,54 @@ export const StoryPage = () => {
 		{ text: 'Feeling good and doing good.', range: [0.05, 0.2] },
 	];
 
-	// 内容在背景差不多覆盖后才出现
-	// const contentOpacity = useTransform(scrollYProgress, [0.88, 1], [0, 1]);
-	// const contentY = useTransform(scrollYProgress, [0.88, 1], [30, 0]);
-
 	const scaleImgFinal = useTransform(() => scaleImg.get() * (scaleImgOut.get() / 0.8));
 
-	const textDecoImg = useTransform(act2Progress, [0.05, 0.15], ['200%', '0%']);
+	const textDecoImg = useTransform(act2Progress, [0.05, 0.2], ['200%', '0%']);
+
+	// 第二幕后半段：蓝色背景缩小成卡片
+	const shrinkScale = useTransform(act2Progress, [0.2, 1], [1, 0.8]);
+	const shrinkScaleText = useTransform(act2Progress, [0.2, 1], [1, 0.5]);
+	const shrinkRadius = useTransform(act2Progress, [0.2, 1], ['0px', '32px']);
+	// 同时往上偏移，视觉上像往上浮
+	const shrinkY = useTransform(act2Progress, [0.2, 0.6], ['0%', '-10%']);
+	const shrinkYText = useTransform(act2Progress, [0.4, 1], ['0%', '-100dvh']);
+	const shrinkYDeco = useTransform(act2Progress, [0.4, 1], ['0%', '-100dvh']);
+	const shrinkYBgYellow = useTransform(act2Progress, [0.2, 0.3], ['0%', '-100%']);
 
 	return (
 		<>
-			<div ref={container1Ref} className='relative h-[200vh] w-full max-w-360'>
+			<div ref={container1Ref} className='relative h-[130vh] w-full max-w-360'>
 				{/* sticky 让内容锁在视口中，滚动时不跑走 */}
 				<div className='sticky top-0 flex h-full w-full items-center justify-center overflow-hidden'>
-					{/* ── 第一幕：黄色背景放大 ── */}
+					{/* 黄色背景 + 裁切容器 */}
 					<motion.div
-						style={{ scaleY, scaleX }}
-						className='bg-yellow-150 relative h-full w-3/4 overflow-hidden rounded-[2%_2%_5%_40%/25%_16%_28%_1%]'
-					/>
-					{/* 第一幕文字：图片放大后出现的文字内容 */}
-					{/* 文字内容层 */}
-					<div className='fixed top-1/2 left-1/2 flex h-fit w-full -translate-x-1/2 -translate-y-2/3 flex-col items-center justify-center'>
-						<ScrollRevealText
-							text='The product'
-							scrollYProgress={act1Progress}
-							range={[0.35, 0.65]}
-							className='text-text-primary text-center text-2xl font-medium uppercase'
-						/>
-						{lines.map((line, i) => (
+						style={{
+							clipPath: clipPathYellow,
+							scale: shrinkScale,
+							borderRadius: shrinkRadius,
+							y: shrinkYBgYellow,
+						}}
+						className='bg-yellow-150 absolute inset-0 z-10 overflow-hidden'
+					>
+						{/* 现在可以直接使用 fixed 布局，内容不会随着 parent 的 scale 变动 */}
+						<div className='fixed top-1/2 left-1/2 z-20 flex h-fit w-full -translate-x-1/2 -translate-y-2/3 flex-col items-center justify-center'>
 							<ScrollRevealText
-								key={i}
-								text={line.text}
+								text='The product'
 								scrollYProgress={act1Progress}
-								range={line.range}
-								className='text-text-primary text-center text-2xl leading-9 font-medium sm:text-4xl sm:leading-12'
+								range={[0.25, 0.65]}
+								className='text-text-primary text-center text-2xl font-medium uppercase'
 							/>
-						))}
-					</div>
+							{lines.map((line, i) => (
+								<ScrollRevealText
+									key={i}
+									text={line.text}
+									scrollYProgress={act1Progress}
+									range={line.range}
+									className='text-text-primary text-center text-3xl leading-9 font-medium sm:text-4xl sm:leading-12'
+								/>
+							))}
+						</div>
+					</motion.div>
 				</div>
 				{/* lemon deco */}
 				<div className='pointer-events-none fixed inset-0 z-20 mx-auto w-full max-w-360'>
@@ -99,15 +116,21 @@ export const StoryPage = () => {
 				</div>
 			</div>
 
-			<div
+			<motion.div
 				ref={container2Ref}
-				className='bg-yellow-150 relative h-[200vh] w-full max-w-[inherit]'
+				style={{ scale: shrinkScale, borderRadius: shrinkRadius, y: shrinkYBgYellow }}
+				className='bg-yellow-150 relative h-[110vh] w-full max-w-[inherit]'
 			/>
 			{/* ── 第二幕：蓝色背景从右下角扩散 ── */}
-			<motion.div style={{ clipPath }} className='absolute inset-0 z-10 bg-blue-800' />
-
+			<motion.div
+				style={{ clipPath, scale: shrinkScale, borderRadius: shrinkRadius, y: shrinkY }}
+				className='absolute inset-0 z-10 bg-blue-800'
+			/>
 			{/* 第二幕内容，在蓝色背景覆盖后出现 */}
-			<div className='fixed top-1/2 left-1/2 z-20 flex h-fit w-full -translate-x-1/2 -translate-y-2/3 flex-col items-center justify-center'>
+			<motion.div
+				style={{ scale: shrinkScaleText, borderRadius: shrinkRadius, y: shrinkYText }}
+				className='fixed top-1/2 left-1/2 z-20 flex h-fit w-full -translate-x-1/2 -translate-y-2/3 flex-col items-center justify-center'
+			>
 				<ScrollRevealText
 					text='Mission'
 					scrollYProgress={act2Progress}
@@ -120,20 +143,27 @@ export const StoryPage = () => {
 						text={line.text}
 						scrollYProgress={act2Progress}
 						range={line.range}
-						className='text-center text-2xl leading-9 font-medium text-white sm:text-4xl sm:leading-12'
+						className='text-center text-3xl leading-9 font-medium text-white sm:text-4xl sm:leading-12'
 					/>
 				))}
-			</div>
+			</motion.div>
 
 			{/* text deco */}
-			<div className='pointer-events-none fixed inset-0 z-20 mx-auto w-full max-w-360'>
+			<motion.div
+				style={{
+					scale: shrinkScaleText,
+					borderRadius: shrinkRadius,
+					y: shrinkYDeco,
+				}}
+				className='pointer-events-none fixed inset-0 z-20 mx-auto w-full max-w-360'
+			>
 				<motion.img
 					src='/images/let-drink-harmless-white.svg'
 					alt='deco'
 					className='absolute right-10 bottom-10 z-20 w-75 scale-80 sm:w-90 md:scale-90'
 					style={{ y: textDecoImg }}
 				/>
-			</div>
+			</motion.div>
 		</>
 	);
 };

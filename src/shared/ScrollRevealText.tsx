@@ -14,7 +14,7 @@ export const ScrollRevealText = ({
 	range,
 	className,
 }: ScrollRevealTextProps) => {
-	const y = useTransform(scrollYProgress, range, ['100%', '0%']);
+	const y = useTransform(scrollYProgress, range, ['100%', '0%'], { clamp: true });
 
 	return (
 		<div

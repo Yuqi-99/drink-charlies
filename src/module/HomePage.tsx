@@ -2,6 +2,7 @@ import { HomeProductsPage } from 'src/module/HomeProductsPage';
 import { MarqueesSection } from 'src/module/MarqueesSection';
 import { ProductsPage } from 'src/module/ProductsPage';
 import { StoryPage } from 'src/module/StoryPage';
+import { StoryPage2 } from 'src/module/StoryPage2';
 
 export const HomePage = () => {
 	return (
@@ -10,6 +11,7 @@ export const HomePage = () => {
 			<ProductsPage />
 			<MarqueesSection />
 			<StoryPage />
+			<StoryPage2 />
 		</div>
 	);
 };
