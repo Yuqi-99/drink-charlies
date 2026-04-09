@@ -11,7 +11,7 @@ export const ProductsPage = () => {
 	const [selectedType, setSelectedType] = useState<'cans' | 'bottles'>('cans');
 	const [openDetailsModal, setOpenDetailsModal] = useState<string | null>(null);
 
-	const { containerRef, onMouseDown, onMouseMove, onMouseUp, onMouseLeave, checkHasMoved } =
+	const { containerRef, onMouseDown, onMouseMove, onMouseUp, onMouseLeave } =
 		useSwipeScroll<HTMLDivElement>();
 
 	const products =
