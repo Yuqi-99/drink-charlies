@@ -2,7 +2,6 @@
 import { useScroll, useTransform, motion, useSpring } from 'motion/react';
 import { useRef } from 'react';
 import { IoClose } from 'react-icons/io5';
-import { cn } from 'src/utils/cn';
 import { useMediaQuery } from 'src/utils/useMediaQuery';
 
 const cards = [
