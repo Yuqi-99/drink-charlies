@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useScroll, useSpring, useTransform, motion } from 'motion/react';
+import { useScroll, useTransform, motion } from 'motion/react';
 import { useRef } from 'react';
 import type { SOCIALS_DATA } from 'src/constants/socialsData';
 
 export const SocialCard = ({
 	item,
-	containerRef,
+	// containerRef,
 	parentRef,
 }: {
 	item: (typeof SOCIALS_DATA)[0];
@@ -25,7 +25,7 @@ export const SocialCard = ({
 		offset: ['start end', 'center center'],
 	});
 
-  // 用这个的话 scrollX 图片会放大
+	// 用这个的话 scrollX 图片会放大
 	// const smoothProgress = useSpring(scrollXProgress, {
 	// 	stiffness: 80,
 	// 	damping: 20,
