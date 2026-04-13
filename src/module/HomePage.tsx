@@ -2,6 +2,7 @@ import { EnvironmentPage } from 'src/module/EnvironmentPage';
 import { HomeProductsPage } from 'src/module/HomeProductsPage';
 import { MarqueesSection } from 'src/module/MarqueesSection';
 import { ProductsPage } from 'src/module/ProductsPage';
+import { SocialsPage } from 'src/module/SocialsPage';
 import { StoryPage } from 'src/module/StoryPage';
 import { StoryPage2 } from 'src/module/StoryPage2';
 
@@ -14,6 +15,7 @@ export const HomePage = () => {
 			<StoryPage />
 			<StoryPage2 />
 			<EnvironmentPage />
+			<SocialsPage />
 		</div>
 	);
 };
