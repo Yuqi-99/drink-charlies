@@ -50,10 +50,10 @@ export const StoryPage = () => {
 	const scaleImgOut = useTransform(act2Progress, [0, 0.2], [0.7, 0]);
 
 	const secondLines = [
-		{ text: "Let's drink harmless!", range: [0.05, 0.2] },
-		{ text: "Drink Charlie's, all day, every day.", range: [0.05, 0.2] },
-		{ text: 'At work, studying, on the go or at home.', range: [0.05, 0.2] },
-		{ text: 'Feeling good and doing good.', range: [0.05, 0.2] },
+		{ text: "Let's drink harmless!", range: [0.15, 0.25] },
+		{ text: "Drink Charlie's, all day, every day.", range: [0.15, 0.25] },
+		{ text: 'At work, studying, on the go or at home.', range: [0.15, 0.25] },
+		{ text: 'Feeling good and doing good.', range: [0.15, 0.25] },
 	];
 
 	const scaleImgFinal = useTransform(() => scaleImg.get() * (scaleImgOut.get() / 0.8));
@@ -61,17 +61,17 @@ export const StoryPage = () => {
 	const textDecoImg = useTransform(act2Progress, [0.05, 0.2], ['200%', '0%']);
 
 	// 第二幕后半段：蓝色背景缩小成卡片
-	const shrinkScale = useTransform(act2Progress, [0.2, 1], [1, 0.8]);
-	const shrinkScaleText = useTransform(act2Progress, [0.2, 1], [1, 0.5]);
-	const shrinkRadius = useTransform(act2Progress, [0.2, 1], ['0px', '32px']);
+	const shrinkScale = useTransform(act2Progress, [0.3, 1], [1, 0.8]);
+	const shrinkScaleText = useTransform(act2Progress, [0.3, 1], [1, 0.5]);
+	const shrinkRadius = useTransform(act2Progress, [0.3, 1], ['0px', '32px']);
 	// 同时往上偏移，视觉上像往上浮
-	const shrinkY = useTransform(act2Progress, [0.2, 0.6], ['0%', '-10%']);
-	const shrinkYText = useTransform(act2Progress, [0.4, 1], ['0%', '-100dvh']);
-	const shrinkYDeco = useTransform(act2Progress, [0.4, 1], ['0%', '-100dvh']);
+	const shrinkX = useTransform(act2Progress, [0.45, 1], [1, 0.6]);
+	const shrinkYText = useTransform(act2Progress, [0.3, 1], ['0%', '-100dvh']);
+	const shrinkYDeco = useTransform(act2Progress, [0.3, 1], ['0%', '-100dvh']);
 	const shrinkYBgYellow = useTransform(act2Progress, [0.2, 0.3], ['0%', '-100%']);
 
 	return (
-		<>
+		<div className='relative w-full'>
 			<div ref={container1Ref} className='relative h-[130vh] w-full max-w-360'>
 				{/* sticky 让内容锁在视口中，滚动时不跑走 */}
 				<div className='sticky top-0 flex h-full w-full items-center justify-center overflow-hidden'>
@@ -123,7 +123,13 @@ export const StoryPage = () => {
 			/>
 			{/* ── 第二幕：蓝色背景从右下角扩散 ── */}
 			<motion.div
-				style={{ clipPath, scale: shrinkScale, borderRadius: shrinkRadius, y: shrinkY }}
+				style={{
+					clipPath,
+					scale: shrinkScale,
+					borderRadius: shrinkRadius,
+					scaleX: shrinkX,
+					transformOrigin: 'center center',
+				}}
 				className='absolute inset-0 z-10 bg-blue-800'
 			/>
 			{/* 第二幕内容，在蓝色背景覆盖后出现 */}
@@ -134,7 +140,7 @@ export const StoryPage = () => {
 				<ScrollRevealText
 					text='Mission'
 					scrollYProgress={act2Progress}
-					range={[0.05, 0.2]}
+					range={[0.15, 0.25]}
 					className='text-center text-2xl font-medium text-white uppercase'
 				/>
 				{secondLines.map((line, i) => (
@@ -164,6 +170,6 @@ export const StoryPage = () => {
 					style={{ y: textDecoImg }}
 				/>
 			</motion.div>
-		</>
+		</div>
 	);
 };
