@@ -43,7 +43,7 @@ export const StoryPage = () => {
 	// scrollYProgress [0.75, 1] 对应 section 的后半段
 	const clipPath = useTransform(
 		act2Progress,
-		[0, 0.5],
+		[0, 0.4],
 		['circle(0% at 75% 75%)', 'circle(150% at 80% 80%)']
 	);
 

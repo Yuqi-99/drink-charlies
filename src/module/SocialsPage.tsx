@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import TextUnderlineDeco from 'src/assets/socials-text-deco.svg?react';
 import { SOCIALS_DATA } from 'src/constants/socialsData';
 import { SocialCard } from 'src/module/components/SocialCard';
+import { FooterSection } from 'src/module/FooterSection';
 import { useSwipeScroll } from 'src/utils/useSwipeScroll';
 
 export const SocialsPage = () => {
@@ -64,6 +65,8 @@ export const SocialsPage = () => {
 					/>
 				))}
 			</motion.div>
+
+			<FooterSection />
 		</div>
 	);
 };

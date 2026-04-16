@@ -32,14 +32,14 @@ export const SocialCard = ({
 	// 	restDelta: 0.001,
 	// });
 
-	const scale = useTransform(scrollProgress, [0, 1], [1.2, 1]);
+	const scale = useTransform(scrollProgress, [0, 1.5], [1.2, 1]);
 
-	const x = useTransform(scrollProgress, [0.2, 1], ['0%', '-40%']);
+	const x = useTransform(scrollProgress, [0.2, 1.5], ['0%', '-80%']);
 
 	return (
 		<motion.div
 			ref={cardRef}
-			className='h-170 w-130 shrink-0 overflow-hidden rounded-[2%_2%_5%_40%/25%_16%_28%_1%]'
+			className='h-100 w-80 shrink-0 overflow-hidden rounded-[2%_2%_5%_40%/25%_16%_28%_1%] sm:h-120 sm:w-100 md:h-170 md:w-130'
 			style={{ x }}
 		>
 			<motion.img
