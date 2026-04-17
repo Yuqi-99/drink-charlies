@@ -2,16 +2,17 @@ import { MdOutlineCameraAlt } from 'react-icons/md';
 import DrinkCharliesLogo from 'src/assets/drink-charlies-logo.svg?react';
 import { useMediaQuery } from 'src/utils/useMediaQuery';
 // import { HiOutlineMenuAlt1 } from 'react-icons/hi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NAVIGATION_DATA } from 'src/constants/navigationData';
 import { AnimatePresence, motion, type Variants } from 'motion/react';
+import TextUnderlineDeco from 'src/assets/text-underline.svg?react';
 
 export const Header = () => {
 	const navigate = useNavigate();
 	const isMobile = useMediaQuery('(max-width: 1023px)');
 	const [openMobileMenu, setOpenMobileMenu] = useState(false);
-	// const [selectedMenu, setSelectedMenu] = useState(0);
+	const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
 
 	// insta button animation
 	const bgVariants = {
@@ -136,9 +137,39 @@ export const Header = () => {
 		},
 	};
 
+	// 用来detect哪一个section在屏幕中
+	useEffect(() => {
+		const observerOptions = {
+			root: null,
+			// section进入频幕中间区域时才触发
+			rootMargin: '-40% 0px -40% 0px',
+			threshold: 0,
+		};
+
+		const observerCallback = (entries: IntersectionObserverEntry[]) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					setSelectedMenu(entry.target.id);
+				} else {
+					setSelectedMenu(null);
+				}
+			});
+		};
+
+		const observer = new IntersectionObserver(observerCallback, observerOptions);
+		NAVIGATION_DATA.forEach((item) => {
+			const element = document.getElementById(item.id);
+			if (element) observer.observe(element);
+		});
+
+		return () => observer.disconnect();
+	}, []);
+
+	console.log(selectedMenu, 'sss');
+
 	return (
 		<>
-			<div className='fixed top-10 z-30 flex w-full max-w-[inherit] flex-col items-stretch justify-between px-10'>
+			<div className='fixed top-10 z-60 flex w-full max-w-[inherit] flex-col items-stretch justify-between px-10'>
 				<div className='flex w-full items-start justify-between'>
 					<motion.a
 						target='_blank'
@@ -214,15 +245,27 @@ export const Header = () => {
 						animate='open'
 						exit='exit'
 						variants={menuModalVariants}
-						className='fixed z-20 h-full w-full p-2'
+						className='fixed z-50 h-full w-full p-2'
 					>
 						<div className='flex h-full w-full flex-col items-center justify-center gap-y-8 rounded-[2%_2%_5%_40%/25%_16%_28%_1%] bg-white'>
 							{NAVIGATION_DATA?.map((item) => (
 								<p
-									className='text-text-primary cursor-pointer text-5xl font-medium uppercase'
+									className='text-text-primary relative inline-block w-fit cursor-pointer text-5xl font-medium uppercase'
 									key={item.id}
+									onClickCapture={() => {
+										setOpenMobileMenu(false);
+										setTimeout(() => {
+											document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' });
+										}, 400);
+									}}
 								>
 									{item.name}
+									{selectedMenu === item.id && (
+										<TextUnderlineDeco
+											className='absolute bottom-0 left-0 w-full'
+											preserveAspectRatio='none'
+										/>
+									)}
 								</p>
 							))}
 						</div>

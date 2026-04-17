@@ -14,7 +14,7 @@ export const HeaderBottom = () => {
 	useEffect(() => {
 		const observerOptions = {
 			root: null,
-			// section进入频幕中间区域时才触发
+			// section进入屏幕中间区域时才触发
 			rootMargin: '-40% 0px -40% 0px',
 			threshold: 0,
 		};
