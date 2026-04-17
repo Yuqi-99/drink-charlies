@@ -53,7 +53,7 @@ export const ProductsPage = () => {
 
 			{/* cans */}
 			<div
-				className='no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-6 lg:grid lg:grid-cols-3 lg:gap-3 lg:pb-0'
+				className='no-scrollbar z-40 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-6 lg:grid lg:grid-cols-3 lg:gap-3 lg:pb-0'
 				ref={containerRef}
 				onMouseDownCapture={onMouseDown}
 				onMouseMoveCapture={onMouseMove}

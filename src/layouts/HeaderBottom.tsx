@@ -44,7 +44,7 @@ export const HeaderBottom = () => {
 	const showHoverBg = hoveredId !== null && hoveredId !== activeId;
 
 	return (
-		<div className='fixed bottom-20 z-20 flex w-full max-w-[inherit] items-center justify-center'>
+		<div className='fixed bottom-20 z-50 flex w-full max-w-[inherit] items-center justify-center'>
 			<div
 				className='bg-grey-50/50 flex w-full max-w-100 items-center justify-between rounded-[5%_2%_4%_10%/10%_10%_50%_2%] p-2 backdrop-blur'
 				onMouseLeave={() => {

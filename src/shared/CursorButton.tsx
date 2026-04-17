@@ -90,7 +90,7 @@ export const CursorButton = ({ onClick, text = 'Next', containerRef }: CursorBut
 				// 初始化完成前隐藏，避免闪烁到左上角
 				opacity: ready ? 1 : 0,
 			}}
-			className='fixed top-0 left-0 z-40 flex size-32 min-w-32 cursor-pointer items-center justify-center rounded-full bg-yellow-200 shadow-lg'
+			className='fixed top-0 left-0 z-60 flex size-32 min-w-32 cursor-pointer items-center justify-center rounded-full bg-yellow-200 shadow-lg'
 			whileTap={{ scale: 0.9 }}
 		>
 			<p className='text-text-primary -mb-4 text-4xl font-bold uppercase'>{text}</p>

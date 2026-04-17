@@ -138,7 +138,7 @@ export const EnvironmentPage = () => {
 							</motion.div>
 						))}
 						{/* Extra padding space at bottom */}
-						<div className='h-[20vh] sm:h-[80vh] lg:h-[40vh]' />
+						<div className='h-[60vh] sm:h-[80vh] lg:h-[40vh]' />
 					</motion.div>
 				</div>
 			</motion.div>
