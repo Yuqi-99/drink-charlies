@@ -20,7 +20,10 @@ export const ProductsPage = () => {
 			: Object.values(BOTTLE_PRODUCTS_DATA);
 
 	return (
-		<section className='relative mt-24 flex h-full w-full flex-col overflow-hidden p-6'>
+		<section
+			id='products'
+			className='relative mt-24 flex h-full w-full flex-col overflow-hidden p-6'
+		>
 			<div className='mb-14 flex w-full flex-col justify-between sm:flex-row sm:items-center'>
 				<p className='text-text-primary text-4xl font-semibold uppercase sm:text-6xl'>Products</p>
 				<div className='mt-4 flex gap-x-4 sm:mt-0'>

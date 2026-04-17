@@ -71,7 +71,7 @@ export const StoryPage = () => {
 	const shrinkYBgYellow = useTransform(act2Progress, [0.2, 0.3], ['0%', '-100%']);
 
 	return (
-		<div className='relative w-full'>
+		<div id='ourStory' className='relative w-full'>
 			<div ref={container1Ref} className='relative h-[130vh] w-full max-w-360'>
 				{/* sticky 让内容锁在视口中，滚动时不跑走 */}
 				<div className='sticky top-0 flex h-full w-full items-center justify-center overflow-hidden'>

@@ -61,6 +61,17 @@ export const EnvironmentPage = () => {
 	const titleOpacity = useTransform(smoothProgress, [0, 0.05, 0.25], [1, 1, 0]);
 	const marginTop = useTransform(smoothProgress, [0.28, 0.9], ['400px', '200px', '0%']);
 
+	// 在组件内，给每张卡用 useTransform 计算 scale
+	const card1Scale = useTransform(
+		scrollProgress,
+		[0, 0.1, 0.3], // progress 范围
+		[0.92, 1, 0.92] // 居中时 1，偏移时缩小
+	);
+	const card2Scale = useTransform(scrollProgress, [0.2, 0.5, 0.8], [0.92, 1, 0.92]);
+	const card3Scale = useTransform(scrollProgress, [0.6, 0.9, 1], [0.92, 1, 0.92]);
+
+	const cardScales = [card1Scale, card2Scale, card3Scale];
+
 	return (
 		<div ref={parentRef} className='relative h-[200dvh] w-full p-6'>
 			<motion.div
@@ -108,8 +119,9 @@ export const EnvironmentPage = () => {
 						style={{ y: isMobile ? cardYMobile : cardY, marginTop: isMobile ? marginTop : 0 }}
 						className='flex flex-col gap-12'
 					>
-						{cards.map((card) => (
-							<div
+						{cards.map((card, i) => (
+							<motion.div
+								style={{ scale: cardScales[i] }}
 								key={card.id}
 								className='flex flex-col justify-between rounded-[2%_2%_5%_40%/25%_16%_28%_1%] bg-green-100 p-8 sm:min-h-[80vh] lg:min-h-[60vh]'
 							>
@@ -123,7 +135,7 @@ export const EnvironmentPage = () => {
 									</p>
 									<p className='text-text-primary text-xl sm:text-3xl'>{card.desc}</p>
 								</div>
-							</div>
+							</motion.div>
 						))}
 						{/* Extra padding space at bottom */}
 						<div className='h-[20vh] sm:h-[80vh] lg:h-[40vh]' />
