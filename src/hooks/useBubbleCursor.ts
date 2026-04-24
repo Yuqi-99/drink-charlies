@@ -38,7 +38,7 @@ export function useBubbleCursor(options: BubbleOptions = {}) {
           position: fixed;
           border-radius: 50%;
           pointer-events: none;
-          z-index: 30;
+          z-index: 60;
           transform: translate(-50%, -50%) scale(0);
         }
       `;
